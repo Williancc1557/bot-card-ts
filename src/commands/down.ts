@@ -10,6 +10,8 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
     const totalDayHours = 24;
     const totalMinute = 60;
     const convertForBraziliansTime = 3;
+    const nullDiferece = 0;
+    const numberNullHours = 1;
 
     const hoursBefore = Number(dataUsers[authorIdCommand][hourArrayLocation]);
     const minutesBefore = Number(dataUsers[authorIdCommand][minuteArrayLocation]);
@@ -19,18 +21,18 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
 
     let totalyMinutes;
     if (hoursBefore == hoursNow) totalyMinutes = minutesNow - minutesBefore;
-    else if (minutesBefore == nullBefore) totalyMinutes = minutesNow;
+    else if (minutesBefore == nullBefore) totalyMinutes = minutesNow + totalMinute;
     else totalyMinutes = Math.abs(totalMinute - minutesBefore) + (minutesNow);
 
     let differenceHours = 0;
 
+    differenceHours = hoursNow >= hoursBefore ? (hoursNow - hoursBefore) + differenceHours : Math.abs((hoursBefore - totalDayHours)) + hoursNow; // if before day != after day
+    if (differenceHours == numberNullHours) differenceHours = nullDiferece;
+    else differenceHours--;
     if (totalyMinutes >= maxMinutesForConvert) {
         differenceHours++;
         totalyMinutes = totalyMinutes - maxMinutesForConvert;
     }
-
-    differenceHours = hoursNow >= hoursBefore ? (hoursNow - hoursBefore) + differenceHours : Math.abs((hoursBefore - totalDayHours)) + hoursNow; // if before day != after day
-
     const getUserDbForCheckIfUserExists = await getUserByIdService(authorIdCommand);
 
     await downCommandCheckIfUserExistsService({

@@ -63,10 +63,10 @@ export const sendEmbed = async ({
         .setTitle("cartão batido!")
         .setTimestamp(new Date())
         .addFields({ name: "funcionário: ", value: `<@${message.author.id}>` },
-            { name: "Tempo trabalhado:", value: `${differenceHoursConcated}:${totalyMinutesConcated}` },
-            { name: "Tempo total exercido por esse funcionário: ", value: `${("0" + userResponseDb.rows[firstRow].hours).slice(sliceNumberToConcate)}:${("0" + userResponseDb.rows[firstRow].minutes).slice(sliceNumberToConcate)}`, inline: false },
-            { name: "inicio: ", value: `${hoursBeforeConcated}:${minutesBeforeConcated}`, inline: false },
-            { name: "final: ", value: `${hoursNowConcated}:${minutesNowConcated}`, inline: false })
+            { name: "Tempo trabalhado:", value: `${differenceHoursConcated}h${totalyMinutesConcated}` },
+            { name: "Tempo total exercido por esse funcionário: ", value: `${("0" + userResponseDb.rows[firstRow].hours).slice(sliceNumberToConcate)}h${("0" + userResponseDb.rows[firstRow].minutes).slice(sliceNumberToConcate)}`, inline: false },
+            { name: "inicio: ", value: `${hoursBeforeConcated}h${minutesBeforeConcated}`, inline: false },
+            { name: "final: ", value: `${hoursNowConcated}h${minutesNowConcated}`, inline: false })
         .setAuthor({ name: message.author.username, iconURL: String(message.guild?.iconURL({ dynamic: true })) })
         .setThumbnail(String(message.author.avatarURL({ dynamic: true })));
 
@@ -79,8 +79,8 @@ export const downCommandCheckIfUserExistsService = async ({ getUserDbForCheckIfU
     if (getUserDbForCheckIfUserExists.rowCount === notExistsUser) {
         return createUserService({
             id: authorIdCommand,
-            hours: 0,
-            minutes: 0,
+            hours: differenceHours,
+            minutes: totalyMinutes,
         });
     } else {
         return updateUserFromIdService({
