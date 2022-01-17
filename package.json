@@ -1,0 +1,24 @@
+{
+  "name": "botcard",
+  "version": "0.0.0",
+  "description": "bot for count cards",
+  "main": "index.ts",
+  "author": "willian",
+  "license": "MIT",
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/pg": "^8.6.4",
+    "discord.js": "^13.6.0",
+    "pg": "^8.7.1",
+    "ts-node-dev": "^1.1.8"
+  },
+  "scripts": {
+    "dev": "ts-node-dev src/index"
+  },
+  "devDependencies": {
+    "@techmmunity/eslint-config": "^5.2.1",
+    "eslint": "^8.6.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
+  }
+}
