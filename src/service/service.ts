@@ -68,7 +68,7 @@ export const sendEmbed = async ({
             { name: "inicio: ", value: `${hoursBeforeConcated}:${minutesBeforeConcated}`, inline: false },
             { name: "final: ", value: `${hoursNowConcated}:${minutesNowConcated}`, inline: false })
         .setAuthor({ name: message.author.username, iconURL: String(message.guild?.iconURL({ dynamic: true })) })
-        .setThumbnail(String(message.guild?.iconURL({ dynamic: true })));
+        .setThumbnail(String(message.author.avatarURL({ dynamic: true })));
 
     channelSendLogs.send({ embeds: [embed] },);
 };
