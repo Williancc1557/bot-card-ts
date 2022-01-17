@@ -1,6 +1,6 @@
 import { Client } from "discord.js";
 import * as dotenv from "dotenv";
-import { messageEvent } from "./events/envents";
+import { messageEvent } from "./events/events";
 dotenv.config();
 
 export const client = new Client({

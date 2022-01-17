@@ -76,12 +76,11 @@ export const sendEmbed = async ({
 export const downCommandCheckIfUserExistsService = async ({ getUserDbForCheckIfUserExists, authorIdCommand, differenceHours, totalyMinutes }: DownCommandCheckIfUserExistsParamsType) => {
     const notExistsUser = 0;
     const firstRow = 0;
-
-    if (getUserDbForCheckIfUserExists.rowCount == notExistsUser) {
+    if (getUserDbForCheckIfUserExists.rowCount === notExistsUser) {
         return createUserService({
             id: authorIdCommand,
-            hours: differenceHours + getUserDbForCheckIfUserExists.rows[firstRow].hours,
-            minutes: totalyMinutes + getUserDbForCheckIfUserExists.rows[firstRow].minutes,
+            hours: 0,
+            minutes: 0,
         });
     } else {
         return updateUserFromIdService({

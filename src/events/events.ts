@@ -16,9 +16,6 @@ export const messageEvent = () => {
                 }
             } else if (message.content == "🆙") return upCommand(message, message.author.id);
             else await message.delete();
-
         }
     });
 };
-
-

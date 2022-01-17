@@ -1,5 +1,5 @@
 import type { Message } from "discord.js";
-import { dataUsers } from "../events/envents";
+import { dataUsers } from "../events/events";
 import { downCommandCheckIfUserExistsService, getUserByIdService, sendEmbed } from "../service/service";
 
 export const downCommand = async (message: Message, authorIdCommand: string) => {
