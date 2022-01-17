@@ -2,9 +2,9 @@ import type { Message } from "discord.js";
 import { dataUsers } from "../events/envents";
 
 export const upCommand = async (message: Message, authorIdCommand: string) => {
-
+    const convertForBraziliansTime = 3;
     if (!dataUsers[authorIdCommand]) {
-        dataUsers[authorIdCommand] = [new Date().getHours().toLocaleString("pt-BR"), new Date().getMinutes().toLocaleString("pt-BR")];
+        dataUsers[authorIdCommand] = [Math.abs(Number(new Date().getHours().toLocaleString("pt-BR")) - convertForBraziliansTime), new Date().getMinutes().toLocaleString("pt-BR")];
         await message.react("⌛");
     }
 

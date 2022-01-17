@@ -4,18 +4,23 @@ import { downCommandCheckIfUserExistsService, getUserByIdService, sendEmbed } fr
 
 export const downCommand = async (message: Message, authorIdCommand: string) => {
     const hourArrayLocation = 0;
+    const nullBefore = 0;
     const minuteArrayLocation = 1;
     const maxMinutesForConvert = 60;
     const totalDayHours = 24;
     const totalMinute = 60;
+    const convertForBraziliansTime = 3;
 
     const hoursBefore = Number(dataUsers[authorIdCommand][hourArrayLocation]);
     const minutesBefore = Number(dataUsers[authorIdCommand][minuteArrayLocation]);
 
-    const hoursNow = Number(new Date().getHours().toLocaleString("pt-BR")); // hours now
-    const minutesNow = Number(new Date().getMinutes().toLocaleString("pt-BR")); // minutes now
+    const hoursNow = Math.abs(Number(new Date().getHours().toLocaleString("pt-BR")) - convertForBraziliansTime);
+    const minutesNow = Number(new Date().getMinutes().toLocaleString("pt-BR"));
 
-    let totalyMinutes = hoursBefore == hoursNow ? minutesNow - minutesBefore : Math.abs((minutesNow - totalMinute)) + (minutesBefore);
+    let totalyMinutes;
+    if (hoursBefore == hoursNow) totalyMinutes = minutesNow - minutesBefore;
+    else if (minutesBefore == nullBefore) totalyMinutes = minutesNow;
+    else totalyMinutes = Math.abs(totalMinute - minutesBefore) + (minutesNow);
 
     let differenceHours = 0;
 
@@ -24,7 +29,8 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
         totalyMinutes = totalyMinutes - maxMinutesForConvert;
     }
 
-    differenceHours = hoursNow >= hoursBefore ? (hoursNow - hoursBefore) + differenceHours : (hoursBefore - totalDayHours) + hoursNow; // if before day != after day
+    differenceHours = hoursNow >= hoursBefore ? (hoursNow - hoursBefore) + differenceHours : Math.abs((hoursBefore - totalDayHours)) + hoursNow; // if before day != after day
+
     const getUserDbForCheckIfUserExists = await getUserByIdService(authorIdCommand);
 
     await downCommandCheckIfUserExistsService({

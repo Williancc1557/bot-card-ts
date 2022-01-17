@@ -14,9 +14,9 @@ export const messageEvent = () => {
                     await downCommand(message, message.author.id);
                     return bulkDeleteService(message);
                 }
-            }
-            if (message.content == "🆙") return upCommand(message, message.author.id);
-            await message.delete();
+            } else if (message.content == "🆙") return upCommand(message, message.author.id);
+            else await message.delete();
+
         }
     });
 };
