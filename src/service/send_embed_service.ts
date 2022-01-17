@@ -19,23 +19,19 @@ export const sendEmbed = async ({
     const listParmamsToConcate = [hoursBefore, minutesBefore, hoursNow, minutesNow, totalMinutes, differenceHours];
     const listParamsConcated = [];
 
-    const listLocateOne = 0;
-    const listLocateTwo = 1;
-    const listLocateThree = 2;
-    const listLocateFour = 3;
-    const listLocateFive = 4;
-    const listLocateSix = 5;
-
     for (let i = 0; i < listParmamsToConcate.length; i++) {
         listParamsConcated[i] = ("0" + listParmamsToConcate[i]).slice(sliceNumberToConcate);
     }
 
-    const hoursBeforeConcated = listParamsConcated[listLocateOne];
-    const minutesBeforeConcated = listParamsConcated[listLocateTwo];
-    const hoursNowConcated = listParamsConcated[listLocateThree];
-    const minutesNowConcated = listParamsConcated[listLocateFour];
-    const totalyMinutesConcated = listParamsConcated[listLocateFive];
-    const differenceHoursConcated = listParamsConcated[listLocateSix];
+    const [
+        hoursBeforeConcated,
+        minutesBeforeConcated,
+        hoursNowConcated,
+        minutesNowConcated,
+        totalyMinutesConcated,
+        differenceHoursConcated,
+    ] = listParamsConcated;
+
 
     const embed = new MessageEmbed()
         .setColor("#008000")

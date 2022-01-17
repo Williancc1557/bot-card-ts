@@ -59,5 +59,4 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
         totalMinutes: totalMinutes,
         differenceHours: differenceHours,
     });
-
 };
