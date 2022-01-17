@@ -1,4 +1,5 @@
 import type { Message } from "discord.js";
+import type { QueryResult } from "pg";
 
 export interface UserQueryType {
     id: string;
@@ -15,4 +16,11 @@ export interface EmbedTypesParams {
     minutesNow?: number;
     totalyMinutes?: number;
     differenceHours?: number;
+}
+
+export interface DownCommandCheckIfUserExistsParamsType {
+    getUserDbForCheckIfUserExists: QueryResult;
+    authorIdCommand: string;
+    differenceHours: number;
+    totalyMinutes: number;
 }
