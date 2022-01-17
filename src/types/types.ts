@@ -14,7 +14,7 @@ export interface EmbedTypesParams {
     minutesBefore?: number;
     hoursNow?: number;
     minutesNow?: number;
-    totalyMinutes?: number;
+    totalMinutes?: number;
     differenceHours?: number;
 }
 
@@ -22,5 +22,5 @@ export interface DownCommandCheckIfUserExistsParamsType {
     getUserDbForCheckIfUserExists: QueryResult;
     authorIdCommand: string;
     differenceHours: number;
-    totalyMinutes: number;
+    totalMinutes: number;
 }

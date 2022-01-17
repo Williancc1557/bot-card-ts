@@ -8,7 +8,6 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
     const minuteArrayLocation = 1;
     const maxMinutesForConvert = 60;
     const totalDayHours = 24;
-    const totalMinute = 60;
     const convertForBraziliansTime = 3;
     const nullDiferece = 0;
     const numberNullHours = 1;
@@ -19,27 +18,30 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
     const hoursNow = Math.abs(Number(new Date().getHours().toLocaleString("pt-BR")) - convertForBraziliansTime);
     const minutesNow = Number(new Date().getMinutes().toLocaleString("pt-BR"));
 
-    let totalyMinutes;
-    if (hoursBefore == hoursNow) totalyMinutes = minutesNow - minutesBefore;
-    else if (minutesBefore == nullBefore) totalyMinutes = minutesNow + totalMinute;
-    else totalyMinutes = Math.abs(totalMinute - minutesBefore) + (minutesNow);
+    let totalMinutes;
+    if (hoursBefore == hoursNow) totalMinutes = minutesNow - minutesBefore;
+    else if (minutesBefore == nullBefore) totalMinutes = minutesNow + maxMinutesForConvert;
+    else totalMinutes = Math.abs(maxMinutesForConvert - minutesBefore) + (minutesNow);
 
     let differenceHours = 0;
 
-    differenceHours = hoursNow >= hoursBefore ? (hoursNow - hoursBefore) + differenceHours : Math.abs((hoursBefore - totalDayHours)) + hoursNow; // if before day != after day
+    differenceHours = hoursNow >= hoursBefore ? (hoursNow - hoursBefore) + differenceHours : Math.abs((hoursBefore - totalDayHours)) + hoursNow;
+
     if (differenceHours == numberNullHours) differenceHours = nullDiferece;
     else if (differenceHours != nullDiferece) differenceHours--;
-    if (totalyMinutes >= maxMinutesForConvert) {
+
+    if (totalMinutes >= maxMinutesForConvert) {
         differenceHours++;
-        totalyMinutes = totalyMinutes - maxMinutesForConvert;
+        totalMinutes = totalMinutes - maxMinutesForConvert;
     }
+
     const getUserDbForCheckIfUserExists = await getUserByIdService(authorIdCommand);
 
     await downCommandCheckIfUserExistsService({
         getUserDbForCheckIfUserExists: getUserDbForCheckIfUserExists,
         authorIdCommand: authorIdCommand,
         differenceHours: differenceHours,
-        totalyMinutes: totalyMinutes,
+        totalMinutes: totalMinutes,
     });
 
     await message.react("✅");
@@ -52,7 +54,7 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
         minutesBefore: minutesBefore,
         hoursNow: hoursNow,
         minutesNow: minutesNow,
-        totalyMinutes: totalyMinutes,
+        totalMinutes: totalMinutes,
         differenceHours: differenceHours,
     });
 

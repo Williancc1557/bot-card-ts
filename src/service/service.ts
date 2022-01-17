@@ -31,13 +31,13 @@ export const sendEmbed = async ({
     minutesBefore,
     hoursNow,
     minutesNow,
-    totalyMinutes,
+    totalMinutes,
     differenceHours }: EmbedTypesParams) => {
     const channelSendLogs = (message.guild?.channels.cache.get(channelId)) as TextChannel;
     const userResponseDb = await getUserByIdService(message.author.id);
     const firstRow = 0;
     const sliceNumberToConcate = -2;
-    const listParmamsToConcate = [hoursBefore, minutesBefore, hoursNow, minutesNow, totalyMinutes, differenceHours];
+    const listParmamsToConcate = [hoursBefore, minutesBefore, hoursNow, minutesNow, totalMinutes, differenceHours];
     const listParamsConcated = [];
 
     const listLocateOne = 0;
@@ -73,20 +73,20 @@ export const sendEmbed = async ({
     channelSendLogs.send({ embeds: [embed] });
 };
 
-export const downCommandCheckIfUserExistsService = async ({ getUserDbForCheckIfUserExists, authorIdCommand, differenceHours, totalyMinutes }: DownCommandCheckIfUserExistsParamsType) => {
+export const downCommandCheckIfUserExistsService = async ({ getUserDbForCheckIfUserExists, authorIdCommand, differenceHours, totalMinutes }: DownCommandCheckIfUserExistsParamsType) => {
     const notExistsUser = 0;
     const firstRow = 0;
     if (getUserDbForCheckIfUserExists.rowCount === notExistsUser) {
         return createUserService({
             id: authorIdCommand,
             hours: differenceHours,
-            minutes: totalyMinutes,
+            minutes: totalMinutes,
         });
     } else {
         return updateUserFromIdService({
             id: authorIdCommand,
             hours: differenceHours + getUserDbForCheckIfUserExists.rows[firstRow].hours,
-            minutes: totalyMinutes + getUserDbForCheckIfUserExists.rows[firstRow].minutes,
+            minutes: totalMinutes + getUserDbForCheckIfUserExists.rows[firstRow].minutes,
         });
     }
 };
