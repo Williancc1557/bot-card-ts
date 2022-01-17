@@ -2,7 +2,7 @@ import { client } from "../client";
 import type { Message } from "discord.js";
 import { upCommand } from "../commands/up";
 import { downCommand } from "../commands/down";
-import { bulkDeleteService } from "../service/service";
+import { bulkDeleteService } from "../service/bulk_delete_service";
 
 export const dataUsers: any = {};
 

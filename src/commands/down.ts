@@ -1,6 +1,8 @@
 import type { Message } from "discord.js";
 import { dataUsers } from "../events/events";
-import { downCommandCheckIfUserExistsService, getUserByIdService, sendEmbed } from "../service/service";
+import { downCommandCheckIfUserExistsService } from "../service/check_user_exists_service";
+import { getUserByIdService } from "../service/get_user_service";
+import { sendEmbed } from "../service/send_embed";
 
 export const downCommand = async (message: Message, authorIdCommand: string) => {
     const hourArrayLocation = 0;
