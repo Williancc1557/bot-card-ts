@@ -28,7 +28,7 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
 
     differenceHours = hoursNow >= hoursBefore ? (hoursNow - hoursBefore) + differenceHours : Math.abs((hoursBefore - totalDayHours)) + hoursNow; // if before day != after day
     if (differenceHours == numberNullHours) differenceHours = nullDiferece;
-    else differenceHours--;
+    else if (differenceHours != nullDiferece) differenceHours--;
     if (totalyMinutes >= maxMinutesForConvert) {
         differenceHours++;
         totalyMinutes = totalyMinutes - maxMinutesForConvert;
