@@ -12,7 +12,7 @@ export const messageEvent = () => {
             if (message.content == "⏬") {
                 if (dataUsers[message.author.id]) {
                     await downCommand(message, message.author.id);
-                    await bulkDeleteService(message);
+                    return bulkDeleteService(message);
                 }
             }
             if (message.content == "🆙") return upCommand(message, message.author.id);
