@@ -5,6 +5,10 @@
   "main": "index.ts",
   "author": "willian",
   "license": "MIT",
+  "engineStrict": true,
+  "engines": {
+    "node": "16.13.1"
+  },
   "dependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/pg": "^8.6.4",
