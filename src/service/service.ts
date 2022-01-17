@@ -70,7 +70,7 @@ export const sendEmbed = async ({
         .setAuthor({ name: message.author.username, iconURL: String(message.guild?.iconURL({ dynamic: true })) })
         .setThumbnail(String(message.author.avatarURL({ dynamic: true })));
 
-    channelSendLogs.send({ embeds: [embed] },);
+    channelSendLogs.send({ embeds: [embed] });
 };
 
 export const downCommandCheckIfUserExistsService = async ({ getUserDbForCheckIfUserExists, authorIdCommand, differenceHours, totalyMinutes }: DownCommandCheckIfUserExistsParamsType) => {
