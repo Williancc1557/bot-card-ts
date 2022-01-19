@@ -13,11 +13,15 @@ export const downCommand = async (message: Message, authorIdCommand: string) => 
     const convertForBraziliansTime = 3;
     const nullDiferece = 0;
     const numberNullHours = 1;
+    const midnigthHour = 0;
 
     const hoursBefore = Number(dataUsers[authorIdCommand][hourArrayLocation]);
     const minutesBefore = Number(dataUsers[authorIdCommand][minuteArrayLocation]);
 
-    const hoursNow = Math.abs(Number(new Date().getHours().toLocaleString("pt-BR")) - convertForBraziliansTime);
+    let hoursNow = Number(new Date().getHours().toLocaleString("pt-BR")) - convertForBraziliansTime;
+
+    hoursNow = hoursNow < midnigthHour ? Math.abs((totalDayHours - hoursBefore) - hoursNow) : Math.abs(hoursNow);
+
     const minutesNow = Number(new Date().getMinutes().toLocaleString("pt-BR"));
 
     let totalMinutes;
